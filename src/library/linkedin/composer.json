@@ -1,0 +1,19 @@
+{
+    "name": "splashmedia/linkedin-php",
+    "type": "library",
+    "description": "LinkedIn client library",
+    "keywords": ["linkedin", "client"],
+    "homepage": "https://github.com/splashmedia/linkedin-oauth",
+    "license": "MIT",
+    "authors": [
+        {"name": "Daniel Cousineau", "email": "dcousineau@splashmedia.com"},
+        {"name": "John Syrinek", "email": "jsyrinek@splashmedia.com"}
+    ],
+    "require": {
+        "php": ">=5.3.2",
+        "ext-curl": "*"
+    },
+    "autoload": {
+        "psr-0": {"Splash\\LinkedIn": "lib/"}
+    }
+}

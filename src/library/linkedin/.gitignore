@@ -1,0 +1,9 @@
+.DS_Store
+vendor/
+
+composer.lock
+
+.idea
+.vagrant
+VagrantFile
+puppet/
