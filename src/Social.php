@@ -21,7 +21,7 @@ use Abraham\TwitterOAuth\TwitterOAuth;
 
 class Social {
 
-	public function facebook_connect($redirectUrl=null,$sessionHandler,$$site_url,$fb_App_id,$fb_secret,$fb_scope,$error_description = 'error description') {
+	public function facebook_connect($redirectUrl=null,$sessionHandler,$site_url,$fb_App_id,$fb_secret,$fb_scope,$error_description = 'error description') {
 
 		$fbData = [];
 
@@ -30,7 +30,7 @@ class Social {
 			return $fbData;
 		}
 
-		if (!isset($$site_url)) {
+		if (!isset($site_url)) {
 			$fbData['error'] = "Please set site main url with scheme";
 			return $fbData;
 		}
@@ -69,7 +69,7 @@ class Social {
 		FacebookSession::setDefaultApplication($fb_App_id, $fb_secret);
 
 		if(empty($redirectUrl)) {
-			$redirectUrl = $$site_url.'/login/fb';
+			$redirectUrl = $site_url.'/login/fb';
 		}
 
 		$helper = new \FbRedirectLoginHelper($redirectUrl);
@@ -93,7 +93,7 @@ class Social {
 						$fbData['location'] = '';
 					}
 					$fbData['picture'] = 'http://graph.facebook.com/'.$fbData['id'].'/picture?type=large';
-					$fbData['logoutURL'] = $helper->getLogoutUrl($session, $$site_url);
+					$fbData['logoutURL'] = $helper->getLogoutUrl($session, $site_url);
 					$fbData['access_token'] = $session->getAccessToken()->extend()->__toString();
 
 					$request = new FacebookRequest($session, 'GET', '/me/friends?fields=id,first_name,last_name,name');
@@ -118,7 +118,7 @@ class Social {
 		return $fbData;
 	}
 
-	public function twitter_connect($$twt_app_id,$$twt_secret,$$site_url) {
+	public function twitter_connect($twt_app_id,$twt_secret,$site_url) {
 		
 		require_once('library/twitter/autoload.php');
 
