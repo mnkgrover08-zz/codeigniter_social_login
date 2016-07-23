@@ -174,7 +174,7 @@ class Social {
 
 
 
-	public function linkedin_connect($redirectUrl=null,$ldn_api_key,$ldn_secret_key) {
+	public function linkedin_connect($redirectUrl=null,$site_url,$ldn_api_key,$ldn_secret_key) {
 		require_once('library/linkedin/src/LinkedIn/Client.php');
 		if(empty($redirectUrl)) {
 			$redirectUrl = $site_url.'login/ldn';
@@ -206,7 +206,8 @@ class Social {
 
 
 
-	public function foursquare_connect($fs_client_id,$fs_client_secret) {
+
+	public function foursquare_connect($fs_client_id,$fs_client_secret,$site_url) {
 		require_once('library/foursquare/src/FoursquareAPI.class.php');
 		$foursquare = new \FoursquareAPI($fs_client_id, $fs_client_secret);
 		$redirect_uri = $site_url.'login/fs';
@@ -238,7 +239,7 @@ class Social {
 
 
 
-	public function gmail_connect($redirectUrl=null,$gmail_client_id,$gmail_client_secret,$gmail_api_key) {
+	public function gmail_connect($redirectUrl=null,$site_url,$gmail_client_id,$gmail_client_secret,$gmail_api_key) {
 		require_once('library/google/src/Google/autoload.php');
 		if(empty($redirectUrl)) {
 			$redirectUrl = $site_url.'login/gmail';
@@ -279,7 +280,7 @@ class Social {
 
 
 
-	public function yahoo_connect() {
+	public function yahoo_connect($site_url) {
 		require_once('library/openid/Lightopenid.php');
 		$openid = new \Lightopenid($_SERVER['SERVER_NAME']);
 
