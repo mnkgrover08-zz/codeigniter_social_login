@@ -17,7 +17,7 @@ So now the Package has been downloaded to your system
 USAGE :
 
 In your Codeigniter Controller at the Top Include the main File of the library downloaded
-<?php
+
 require_once(FCPATH."vendor/thetechnicalcircle/codeigniter_social_login/src/Social.php");
 
 class User extends CI_Controller {
@@ -151,6 +151,5 @@ class User extends CI_Controller {
   	}
 }
 
-?>	  
 
 So this is your complete controller code to get Data from social Platforms in form of Array. Now you can Play with it and store data in database and authenticate users.
