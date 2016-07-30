@@ -17,27 +17,27 @@ So now the Package has been downloaded to your system
 USAGE :
 
 In your Codeigniter Controller at the Top Include the main File of the library downloaded
-
+<?php
 require_once(FCPATH."vendor/thetechnicalcircle/codeigniter_social_login/src/Social.php");
 
 class User extends CI_Controller {
 
 	function __construct(){
-    parent::__construct();
-    $this->load->library('session');
-    $this->load->helper('url');
-  }
+    		parent::__construct();
+    		$this->load->library('session');
+    		$this->load->helper('url');
+  	}
   
-  public function login(){	
+	public function login(){	
 		$connect = $this->uri->segment(2);
 		if($this->session->userdata('logged_user')== true){
-      if($connect) {
+      			if($connect) {
 				$this->load->view('welcome_message');
 			} else {
 				redirect(base_url('user/dashboard'));
 			}       
-    }
-    if($connect == 'fb') {
+    		}
+    		if($connect == 'fb') {
 			$this->login_facebook();
 			$this->load->view('welcome_message');
 		} elseif($connect == 'twt') {
@@ -68,30 +68,30 @@ class User extends CI_Controller {
 		if(!empty($fbData['redirectURL'])) {
 			redirect($fbData['redirectURL']);
 		} else {
-			  if(!empty($fbData['id'])) {
-			    echo "<pre>";
-			    print_r($fbData);
-			    echo "</pre>";die; //all the data returned by facebook will be in this variable (Array). Play with it.
-			  }
+			if(!empty($fbData['id'])) {
+				echo "<pre>";
+				print_r($fbData);
+				echo "</pre>";die; /* all the data returned by facebook will be in this variable (Array). Play with it. */
 			}
+		}
 	}
 	
 	private function login_twitter() {
-  	$site_url = $this->config->item('base_url')."/";
-  	$client_id = "YOUR TWITTER CLIENT ID";
-  	$client_secret = "YOUR TWITTER CLIENT SECRET";
-  	$social_instance = new Social();
-  	$twtData = $social_instance->twitter_connect($client_id,$client_secret,$site_url);
-  	if(!empty($twtData['redirectURL'])) {
-  		redirect($twtData['redirectURL']);
-  	  } else {
-  		if(!empty($twtData['id'])) {
-  			echo "<pre>";print_r($twtData);echo "</pre>";die();
+  		$site_url = $this->config->item('base_url')."/";
+  		$client_id = "YOUR TWITTER CLIENT ID";
+  		$client_secret = "YOUR TWITTER CLIENT SECRET";
+  		$social_instance = new Social();
+  		$twtData = $social_instance->twitter_connect($client_id,$client_secret,$site_url);
+  		if(!empty($twtData['redirectURL'])) {
+  			redirect($twtData['redirectURL']);
+  	  	} else {
+  			if(!empty($twtData['id'])) {
+  				echo "<pre>";print_r($twtData);echo "</pre>";die();
+  			}
   		}
   	}
-  }
   
-  private function login_linkedin() {
+  	private function login_linkedin() {
 		$site_url = $this->config->item('base_url')."/";
 		$client_id = "YOUR LINKED IN CLIENT ID";
 		$client_secret = "YOUR LINKED IN SECRET";
@@ -101,12 +101,12 @@ class User extends CI_Controller {
 			 redirect($ldnData['redirectURL']);
 		} else {
 			if(!empty($ldnData['id'])) {
-				  echo "<pre>";print_r($ldnData);echo "</pre>";die();
-		  }
+				echo "<pre>";print_r($ldnData);echo "</pre>";die();
+		  	}
 		}
 	}
   
-  private function login_gmail() {
+  	private function login_gmail() {
 		$site_url = $this->config->item('base_url')."/";
 		$client_id = "YOUR GMAIL CLIENT ID";
 		$client_secret = "YOUR GMAIL CLIENT SECRET";
@@ -123,33 +123,34 @@ class User extends CI_Controller {
 	}
 	
 	private function login_yahoo() {
-  	$site_url = $this->config->item('base_url')."/";
-  	$social_instance = new Social();
-  	$yahooData = $social_instance->yahoo_connect($site_url);
-  	if(!empty($yahooData['redirectURL'])) {
-  		redirect($yahooData['redirectURL']);
-  	} else {
-  		if(!empty($yahooData['email'])) {
-  			echo "<pre>";print_r($yahooData);echo "</pre>";die();
+  		$site_url = $this->config->item('base_url')."/";
+  		$social_instance = new Social();
+  		$yahooData = $social_instance->yahoo_connect($site_url);
+  		if(!empty($yahooData['redirectURL'])) {
+  			redirect($yahooData['redirectURL']);
+  		} else {
+  			if(!empty($yahooData['email'])) {
+  				echo "<pre>";print_r($yahooData);echo "</pre>";die();
+  			}
   		}
   	}
-  }
   
-  private function login_foursquare() {
-  	$site_url = $this->config->item('base_url')."/";
-  	$client_id = "FOURSQUARE CLIENT ID";	
-  	$client_secret = "FOURSQUARE CLIENT SECRET";
-  	$social_instance = new Social();
-  	$fsData = $social_instance->foursquare_connect($client_id,$client_secret,$site_url);
-  	if(!empty($fsData['redirectURL'])) {
-  		redirect($fsData['redirectURL']);
-  	} else {
-  		if(!empty($fsData['id'])) {
-  			echo "<pre>";print_r($fsData);echo "</pre>";die();
+  	private function login_foursquare() {
+  		$site_url = $this->config->item('base_url')."/";
+  		$client_id = "FOURSQUARE CLIENT ID";	
+  		$client_secret = "FOURSQUARE CLIENT SECRET";
+  		$social_instance = new Social();
+  		$fsData = $social_instance->foursquare_connect($client_id,$client_secret,$site_url);
+  		if(!empty($fsData['redirectURL'])) {
+  			redirect($fsData['redirectURL']);
+  		} else {
+  			if(!empty($fsData['id'])) {
+  				echo "<pre>";print_r($fsData);echo "</pre>";die();
+  			}
   		}
   	}
-  }
 }
-	  
+
+?>	  
 
 So this is your complete controller code to get Data from social Platforms in form of Array. Now you can Play with it and store data in database and authenticate users.
