@@ -85,7 +85,7 @@ class Social {
 			try {
 				$session = $helper->getSessionFromRedirect();
 				if($session) {
-					$request = new FacebookRequest($session, 'GET', '/me');
+					$request = new FacebookRequest($session, 'GET', '/me?fields=id,name,email');
 					$response = $request->execute();
 					$graphObject = $response->getGraphObject();
 					$fbData = $graphObject->asArray();
