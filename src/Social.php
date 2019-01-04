@@ -132,7 +132,7 @@ class Social {
 				$access_token = $connection->oauth('oauth/access_token', ['oauth_verifier'=>$_GET['oauth_verifier']]);
 
 				$connection = new TwitterOAuth($twt_app_id, $twt_secret, $access_token['oauth_token'], $access_token['oauth_token_secret']);
-				$user = $connection->get('account/verify_credentials');
+				$user = $connection->get('account/verify_credentials', ['include_email' => 'true']);
 				if(!isset($user->errors)) {
 					$twtData = json_decode(json_encode($user),TRUE);
 					$name = explode(' ', $twtData['name']);
